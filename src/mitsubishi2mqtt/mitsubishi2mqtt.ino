@@ -85,18 +85,8 @@ void setup() {
   // Start serial for debug before HVAC connect to serial
   Serial.begin(115200);
   // Serial.println(F("Starting Mitsubishi2MQTT"));
-  // Mount SPIFFS filesystem
-  if (SPIFFS.begin())
-  {
-    // Serial.println(F("Mounted file system"));
-  }
-  else
-  {
-    // Serial.println(F("Failed to mount FS -> formating"));
-    SPIFFS.format();
-    // if (SPIFFS.begin())
-      // Serial.println(F("Mounted file system after formating"));
-  }
+  // Mount SPIFFS filesystem, auto-format on fail.
+  SPIFFS.begin(true);
   //set led pin as output
   pinMode(blueLedPin, OUTPUT);
   /*
